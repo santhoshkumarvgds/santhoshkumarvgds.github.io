@@ -137,6 +137,7 @@
                   strong enough . . !
                 </h1>
                 <h2
+                  id="name"
                   data-aos="fade-right"
                   data-aos-duration="900"
                   data-aos-delay="1200"
@@ -177,7 +178,6 @@
         </h5>
         <div class="colors" style="display: inline-block; margin-top: -9px">
           <red
-            onclick="red()"
             style="
               background-color: red;
               padding: 12px;
@@ -302,7 +302,7 @@
             width="170px;"
           />
         </div>
-        <div class="poo">
+        <div class="poo row">
           <div class="col-md-1"></div>
           <div
             class="col-md-5"
@@ -331,24 +331,23 @@
               become a software engineer
               <sp id="sp">.</sp>
             </p>
-            <!-- resume -->
-            <!-- <a
-              href="./assets/docs/santhoshkumarvgds_resume.pdf"
-              target="_blank"
-              style="color: #858585;z-index:1"
-              title="click to view resume"
-            >
-              <p>
-                <i class="fas fa-file-pdf"></i>
-                Re<sp>su</sp>me
-              </p>
-            </a> -->
             <p>
               <i class="far fa-calendar-alt"></i> DOB:
               3<sp>1</sp>.0<sp>1</sp>.200<sp>1</sp>
             </p>
 
             <p><i class="fas fa-heartbeat"></i> Si<sp>ng</sp>le</p>
+            <!-- resume -->
+            <a
+              href="./assets/docs/santhoshkumarvgds_resume.pdf"
+              target="_blank"
+              id="resume"
+              title="click to view resume"
+            >
+              <p>
+                Resume
+              </p>
+            </a>
           </div>
 
           <div
@@ -673,18 +672,6 @@
     <script>
       AOS.init();
     </script>
-    <!--onload-->
-    <!--
-    <script>
-    $( document ).ready(function() {
-        $("body,htm").css("display", "none");
-    });
-
-    $( window ).on( "load", function() {
-                $("body,html").css("display", "block");
-    });
-    </script>
-    -->
     <!-- Start of Async Drift Code -->
     <script>
       "use strict";
@@ -755,276 +742,114 @@
     </script>
     <!---end  block--->
     <script>
+      var allColor = [
+        {
+          colorName: "deepskyblue",
+          backgroundColorName: "#00bfff33",
+        },
+        {
+          colorName: "black",
+          backgroundColorName: "#b7b7b7",
+        },
+        {
+          colorName: "green",
+          backgroundColorName: "#c1ebc1",
+        },
+        {
+          colorName: "blue",
+          backgroundColorName: "#bbbfff",
+        },
+        {
+          colorName: "limegreen",
+          backgroundColorName: "#32cd3247",
+        },
+        {
+          colorName: "blueviolet",
+          backgroundColorName: "#8a2be257",
+        },
+        {
+          colorName: "deeppink",
+          backgroundColorName: "#ff149345",
+        },
+        {
+          colorName: "darkblue",
+          backgroundColorName: "#00008b3d",
+        },
+        {
+          colorName: "orange",
+          backgroundColorName: "#ffa2064d",
+        },
+        {
+          colorName: "brown",
+          backgroundColorName: "#a52a2a4d",
+        },
+        {
+          colorName: "red",
+          backgroundColorName: "#ffbbbb",
+        },
+        {
+          colorName: "darkblue",
+          backgroundColorName: "#00008b3d",
+        },
+        {
+          colorName: "yellow",
+          backgroundColorName: "f2cf00",
+          colorOpacity: "light",
+          alternativeColor: "#fcffbb",
+        },
+      ];
       $(function () {
-        $("red").click(function () {
-          $("sp,span,p i,#sec2,m,li").css("color", "#fd1b1b");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "#fd1b1b"
-          );
-          $(".img img").css("background-color", "#ffbbbb");
-          $("body").css("cursor", "url('./assets/img/arrow/c.png'),pointer");
-          $("ua").css("border-bottom", "2px solid #fd1b1b");
+        $(function () {
+          var length = allColor.length;
+          for (var i = 0; i < length; i++) {
+            // console.log(allColor[i]);
+            $(allColor[i].colorName).click(function (e) {
+              //console.log(e.target.tagName);
+              selectColor(e);
+            });
+          }
         });
 
-        $("yellow").click(function () {
+        function selectColor(e) {
+          var nameOfTheTag = e.target.tagName.toLowerCase();
+          var _index = allColor.findIndex(
+            (obj) => obj.colorName == nameOfTheTag
+          );
+          //console.log(_index);
+          var colorObj = {
+            ...allColor[_index],
+          };
+          if (colorObj.colorOpacity == "light")
+            setColorForAll(
+              colorObj.alternativeColor,
+              colorObj.backgroundColorName
+            );
+          else setColorForAll(colorObj.backgroundColorName, colorObj.colorName);
+        }
+
+        var rand = Math.floor(Math.random() * allColor.length);
+
+        var singleColor = {
+          ...allColor[rand],
+        };
+        //console.log(singleColor);
+
+        setColorForAll(singleColor.backgroundColorName, singleColor.colorName);
+
+        function setColorForAll(imgColor, cursorColor) {
+          console.log(imgColor + " " + cursorColor);
+          var arrowImgPath = "./assets/img/arrow/";
+          $("sp,span,p i,#sec2,m,#name").css("color", cursorColor);
+          $("#html,#java,#photo,#bootstrap,#map,#resume p").css(
+            "background-color",
+            cursorColor
+          );
+          $("ua").css("border-bottom", "2px solid " + cursorColor);
+          $(".img img").css("background-color", imgColor);
           $("body").css(
             "cursor",
-            "url('./assets/img/arrow/yellow.png'),pointer"
+            "url('" + arrowImgPath + cursorColor + ".png'),pointer"
           );
-          $("sp,span,p i,#sec2,m,li").css("color", "#f2cf00");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "#f2cf00"
-          );
-          $(".img img").css("background-color", "#fcffbb");
-          $("ua").css("border-bottom", "2px solid #f2cf00");
-        });
-
-        $("brown").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/brown.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m,li").css("color", "brown");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "brown"
-          );
-          $(".img img").css("background-color", "#a52a2a4d");
-          $("ua").css("border-bottom", "2px solid brown");
-        });
-
-        $("orange").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/orange.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m,li").css("color", "orange");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "orange"
-          );
-          $(".img img").css("background-color", "#ffa2064d");
-          $("ua").css("border-bottom", "2px solid orange");
-        });
-
-        $("darkblue").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/darkblue.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m,li").css("color", "darkblue");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "darkblue"
-          );
-          $(".img img").css("background-color", "#00008b3d");
-          $("ua").css("border-bottom", "2px solid darkblue");
-        });
-
-        $("deeppink").click(function () {
-          $("body").css("cursor", "url('./assets/img/arrow/pink.png'),pointer");
-          $("sp,span,p i,#sec2,m,li").css("color", "deeppink");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "deeppink"
-          );
-          $(".img img").css("background-color", "#ff149345");
-          $("ua").css("border-bottom", "2px solid deeppink");
-        });
-
-        $("blueviolet").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/bluevoilet.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m,li").css("color", "blueviolet");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "blueviolet"
-          );
-          $(".img img").css("background-color", "#8a2be257");
-          $("ua").css("border-bottom", "2px solid blueviolet");
-        });
-
-        $("limegreen").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/lightgreen.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m,li").css("color", "limegreen");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "limegreen"
-          );
-          $(".img img").css("background-color", "#32cd3247");
-          $("ua").css("border-bottom", "2px solid limegreen");
-        });
-
-        $("blue").click(function () {
-          $("body").css("cursor", "url('./assets/img/arrow/blue.png'),pointer");
-          $("sp,span,p i,#sec2,m,li").css("color", "blue");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "blue"
-          );
-          $(".img img").css("background-color", "#bbbfff");
-          $("ua").css("border-bottom", "2px solid blue");
-        });
-        $("green").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/green.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m,.menu .active a").css("color", "#009f00");
-          $("#html,#java,#photo,#bootstrap,.img img,#map").css(
-            "background-color",
-            "#009f00"
-          );
-          $(".img img").css("background-color", "#c1ebc1");
-
-          $("ua").css("border-bottom", "2px solid #009f00");
-        });
-
-        $("black").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/black.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m").css("color", "black");
-          $("#html,#java,#photo,#bootstrap,#map").css(
-            "background-color",
-            "black"
-          );
-          $(".img img").css("background-color", "#b7b7b7");
-
-          $("ua").css("border-bottom", "2px solid black");
-        });
-        $("deepskyblue").click(function () {
-          $("body").css(
-            "cursor",
-            "url('./assets/img/arrow/skyblue.png'),pointer"
-          );
-          $("sp,span,p i,#sec2,m").css("color", "deepskyblue");
-          $("#html,#java,#photo,#bootstrap,#map").css(
-            "background-color",
-            "deepskyblue"
-          );
-          $(".img img").css("background-color", "#00bfff33");
-          $("ua").css("border-bottom", "2px solid deepskyblue");
-        });
-
-        var colors = [
-          "deepskyblue",
-          "red",
-          "#f2cf00",
-          "black",
-          "brown",
-          "#009f00",
-          "blue",
-          "limegreen",
-          "blueviolet",
-          "deeppink",
-          "darkblue",
-          "orange",
-        ];
-
-        var rand = Math.floor(Math.random() * colors.length);
-        $("sp,span,p i,#sec2,m").css("color", colors[rand]);
-        $("#html,#java,#photo,#bootstrap,#map").css(
-          "background-color",
-          colors[rand]
-        );
-
-        $("ua").css("border-bottom", "2px solid " + colors[rand]);
-        var a = colors[rand];
-        switch (a) {
-          case "deepskyblue":
-            $(".img img").css("background-color", "#00bfff33");
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/skyblue.png'),pointer"
-            );
-            break;
-          case "black":
-            $(".img img").css("background-color", "#b7b7b7");
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/black.png'),pointer"
-            );
-            break;
-          case "#009f00":
-            $(".img img").css("background-color", "#c1ebc1");
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/green.png'),pointer"
-            );
-            break;
-          case "blue":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/blue.png'),pointer"
-            );
-            $(".img img").css("background-color", "#bbbfff");
-            break;
-          case "limegreen":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/lightgreen.png'),pointer"
-            );
-            $(".img img").css("background-color", "#32cd3247");
-            break;
-          case "blueviolet":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/bluevoilet.png'),pointer"
-            );
-            $(".img img").css("background-color", "#8a2be257");
-            break;
-          case "deeppink":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/pink.png'),pointer"
-            );
-            $(".img img").css("background-color", "#ff149345");
-            break;
-          case "darkblue":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/darkblue.png'),pointer"
-            );
-            $(".img img").css("background-color", "#00008b3d");
-            break;
-
-          case "orange":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/orange.png'),pointer"
-            );
-            $(".img img").css("background-color", "#ffa2064d");
-            break;
-
-          case "brown":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/brown.png'),pointer"
-            );
-            $(".img img").css("background-color", "#a52a2a4d");
-            break;
-
-          case "#f2cf00":
-            $("body").css(
-              "cursor",
-              "url('./assets/img/arrow/yellow.png'),pointer"
-            );
-            $(".img img").css("background-color", "#fcffbb");
-            break;
-
-          case "red":
-            $(".img img").css("background-color", "#ffbbbb");
-            $("body").css("cursor", "url('./assets/img/arrow/c.png'),pointer");
-            break;
         }
       });
     </script>
