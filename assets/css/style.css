@@ -655,3 +655,19 @@ background-color: rgba(0,0,0,0.07);
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
+#resume p{
+    padding: 10px 15px;
+    border-radius: 4px;
+    width: 93px;
+    margin: 1px;
+    color: white;
+    text-decoration: none;
+}
+#resume:hover{
+    color: white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, .26);
+    text-decoration: none;
+}
+#resume:visited{
+    text-decoration: none;
+}
