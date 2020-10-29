@@ -172,6 +172,18 @@
         >
       </a>
       <div class="inside" style="margin-top: -50px">
+        <div style="margin-left: 5px">
+          <h5 style="margin-bottom: 2px">Dark <sp>mode</sp></h5>
+          <label class="switch" style="margin-left: 5px">
+            <input
+              type="checkbox"
+              id="darkmode"
+              onChange="toggleDarkMode(this)"
+            />
+            <span class="slider round"></span>
+          </label>
+        </div>
+
         <h5 style="margin-bottom: 10px; margin-left: 5px">
           Choose
           <sp>Color</sp>
@@ -291,7 +303,12 @@
 
     <div class="about">
       <div class="abou section" id="section-2">
-        <h1 class="text-center" ata-aos="zoom-in" data-aos-duration="700">
+        <h1
+          class="text-center"
+          ata-aos="zoom-in"
+          data-aos-duration="700"
+          id="darkcolorchange1"
+        >
           <ua style="border-bottom: 2px solid">About </ua>Me
         </h1>
         <div class="img">
@@ -344,9 +361,7 @@
               id="resume"
               title="click to view resume"
             >
-              <p>
-                Resume
-              </p>
+              <p>Resume</p>
             </a>
           </div>
 
@@ -421,7 +436,12 @@
     <div class="da">
       <br />
       <div class="edu section" id="section-3">
-        <h1 class="text-center" ata-aos="zoom-in" data-aos-duration="700">
+        <h1
+          class="text-center"
+          ata-aos="zoom-in"
+          data-aos-duration="700"
+          id="darkcolorchange2"
+        >
           <ua style="border-bottom: 2px solid">Educa</ua>tion
         </h1>
         <br /><br />
@@ -476,15 +496,10 @@
     </div>
     <br />
     <h1
-      id="man"
-      class="text-center"
+      id="darkcolorchange3"
+      class="text-center man"
       ata-aos="zoom-in"
       data-aos-duration="700"
-      style="
-        font-family: 'Merienda', cursive;
-        text-shadow: 2px 2px 5px;
-        color: black;
-      "
     >
       <ua style="border-bottom: 2px solid">Ma</ua>p
     </h1>
@@ -509,11 +524,7 @@
         class="text-center aos-init aos-animate"
         data-aos=""
         data-aos-duration="700"
-        style="
-          font-family: 'Merienda', cursive;
-          text-shadow: 2px 2px 5px;
-          color: black;
-        "
+        id="darkcolorchange4"
       >
         <ua style="border-bottom: 2px solid">Cont</ua>act
       </h1>
@@ -798,6 +809,27 @@
           alternativeColor: "#fcffbb",
         },
       ];
+      var darkModeChecked = false;
+      function toggleDarkMode(e) {
+        var html = document.getElementsByTagName("html")[0];
+        var body = document.body;
+        darkModeChecked = !darkModeChecked;
+        if (darkModeChecked) {
+          html.setAttribute("class", "dark");
+          body.setAttribute("class", "dark");
+          changeHeadingColor("white");
+        } else {
+          changeHeadingColor("black");
+          html.removeAttribute("class", "dark");
+          body.removeAttribute("class", "dark");
+        }
+        function changeHeadingColor(color) {
+          for (var i = 1; i < 5; i++) {
+            console.log(document.getElementById("darkcolorchange" + i));
+            document.getElementById("darkcolorchange" + i).style.color = color;
+          }
+        }
+      }
       $(function () {
         $(function () {
           var length = allColor.length;
