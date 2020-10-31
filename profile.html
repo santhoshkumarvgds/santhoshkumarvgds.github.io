@@ -865,8 +865,13 @@
           ...allColor[rand],
         };
         //console.log(singleColor);
-
-        setColorForAll(singleColor.backgroundColorName, singleColor.colorName);
+        if (singleColor.colorOpacity == "light")
+            setColorForAll(
+              singleColor.alternativeColor,
+              singleColor.backgroundColorName
+            );
+        else setColorForAll(singleColor.backgroundColorName, singleColor.colorName);
+        //setColorForAll(singleColor.backgroundColorName, singleColor.colorName);
 
         function setColorForAll(imgColor, cursorColor) {
           console.log(imgColor + " " + cursorColor);
