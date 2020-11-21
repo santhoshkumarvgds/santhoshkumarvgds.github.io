@@ -883,9 +883,13 @@
           );
           $("ua").css("border-bottom", "2px solid " + cursorColor);
           $(".img img").css("background-color", imgColor);
+          var cursor= cursorColor;
+          if (singleColor.colorOpacity == "light"){
+            cursor=singleColor.colorName;
+          }
           $("body").css(
             "cursor",
-            "url('" + arrowImgPath + cursorColor + ".png'),pointer"
+            "url('" + arrowImgPath + cursor + ".png'),pointer"
           );
         }
       });
