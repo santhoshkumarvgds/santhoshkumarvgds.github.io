@@ -868,12 +868,13 @@
         if (singleColor.colorOpacity == "light")
             setColorForAll(
               singleColor.alternativeColor,
-              singleColor.backgroundColorName
+              singleColor.backgroundColorName,
+              singleColor.colorName
             );
         else setColorForAll(singleColor.backgroundColorName, singleColor.colorName);
         //setColorForAll(singleColor.backgroundColorName, singleColor.colorName);
 
-        function setColorForAll(imgColor, cursorColor) {
+        function setColorForAll(imgColor, cursorColor,opacity="Not light") {
           console.log(imgColor + " " + cursorColor);
           var arrowImgPath = "./assets/img/arrow/";
           $("sp,span,p i,#sec2,m,#name").css("color", cursorColor);
@@ -884,9 +885,8 @@
           $("ua").css("border-bottom", "2px solid " + cursorColor);
           $(".img img").css("background-color", imgColor);
           var cursor= cursorColor;
-          console.log(colorObj);
-          if (singleColor.colorOpacity == "light"){
-            cursor=singleColor.colorName;
+          if (opacity != "Not light"){
+            cursor=opacity;
           }
           $("body").css(
             "cursor",
