@@ -358,7 +358,7 @@ a:active{
 }
 @-webkit-keyframes bounce{
     0%,100%,20%,50%,80%{-webkit-transform:translateY(0);transform:translateY(0)}40%{-webkit-transform:translateY(-50px);transform:translateY(-50px)}60%{-webkit-transform:translateY(-25px);transform:translateY(-25px)}}@keyframes bounce{0%,100%,20%,50%,80%{-webkit-transform:translateY(0);transform:translateY(0)}40%{-webkit-transform:translateY(-50px);transform:translateY(-50px)}60%{-webkit-transform:translateY(-25px);transform:translateY(-25px)}}.carousel-inner{opacity:.7}.fa-angle-right{left:.51vw}.fa-angle-left,.fa-angle-right{position:absolute;padding:1.5vw 2vw;background-color:#fff;color:#000;border-radius:48%;top:50%;font-size:3vw;display:inline-block;margin-top:-10px}.fa-angle-left:hover,.fa-angle-right:hover{-webkit-box-shadow:0 4px 8px 0 rgba(0,0,0,.5),0 6px 20px 0 rgba(0,0,0,.59);box-shadow:0 4px 8px 0 rgba(0,0,0,.5),0 6px 20px 0 rgba(0,0,0,.59)}
-.wrapper{position:relative;width:100%;h}#particles{position:absolute;top:0;left:0;height:100%;width:100%}
+.wrapper{position:relative;width:100%;h}#particles{position:absolute;top:0;left:0;height:100%;width:100%;z-index: 1001;}
 .quate h1{
     width: 320px;
 }
