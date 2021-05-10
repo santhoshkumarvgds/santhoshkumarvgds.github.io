@@ -39,15 +39,21 @@ html {
 
 
 @media only screen and (max-width:768px) {
-    .menu a {
+/*     .menu a {
         display: none;
-    }
+    } */
     .head .quate h1 {
         margin-top: 0;
         padding-top: 0
     }
 
 
+}
+
+@media only screen and (max-width:950px) {
+    .menu a {
+        display: none;
+    }
 }
 
 @media only screen and (min-width:767px) {
